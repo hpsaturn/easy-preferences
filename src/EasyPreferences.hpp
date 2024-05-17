@@ -1,0 +1,122 @@
+/**************************************************
+ * ESP32Cam
+ * ========
+ * Config utlility used for general purpose
+ * by @hpsaturn Copyright (C) 2024
+ * This file is part ESP32S3 camera tests project:
+ * https://github.com/hpsaturn/esp32s3-cam
+**************************************************/
+
+#ifndef EasyPreferences_hpp
+#define EasyPreferences_hpp
+
+#include <Preferences.h>
+#include <mutex>
+
+#define RW_MODE false
+#define RO_MODE true
+
+typedef enum {
+    INT, BOOL, FLOAT, STRING, UNKNOWN
+} ConfKeyType;
+
+#include <preferences-keys.h>
+
+/*******************************
+You should first define your "preferences-key.h" in
+your lib directory with your keys with something like that:
+
+#define CONFIG_KEYS_LIST         \
+  X(KPWRON, "PowerOn", INT)      \
+  X(KPINUM, "PiNumber", FLOAT)   \
+  X(KDEBUG, "debug", BOOL)      \
+  X(KBASIC, "-----", UNKNOWN)    \
+  X(KCOUNT, "KCOUNT", UNKNOWN)
+
+*********************************/
+
+#define X(kname, kreal, ktype) kname,
+typedef enum CONFKEYS : size_t { CONFIG_KEYS_LIST } CONFKEYS; 
+#undef X
+
+class EasyPreferences {
+   public:
+    uint64_t chipid;
+    String deviceId;
+    String dname;
+    bool devmode;
+    
+    void init(const char app_name[]);
+
+    void saveInt(String key, int32_t value);
+    void saveInt(CONFKEYS key, int32_t value);
+
+    int32_t getInt(String key, int32_t defaultValue);
+    int32_t getInt(CONFKEYS key, int32_t defaultValue);
+    
+    bool getBool(String key, bool defaultValue);
+    bool getBool(CONFKEYS key, bool defaultValue);
+
+    void saveBool(String key, bool value);
+    void saveBool(CONFKEYS key, bool value);
+
+    float_t getFloat(String key, float_t defaultValue = 0.0);
+    float_t getFloat(CONFKEYS key, float_t defaultValue = 0.0);
+
+    void saveFloat(String key, float_t value);
+    void saveFloat(CONFKEYS key, float_t value);
+
+    void saveString(String key, String value);
+    void saveString(CONFKEYS key, String value);
+
+    String getString(String key, String defaultValue);
+    String getString(CONFKEYS key, String defaultValue);
+
+    String getValue(String key);
+
+    String getDeviceId();
+
+    String getDeviceIdShort();
+
+    PreferenceType keyType(String key);
+
+    bool isKey(String key);
+    
+    bool isKey(CONFKEYS key);
+
+    bool isValidKey(String key);
+
+    String getKey(CONFKEYS key);
+
+    ConfKeyType getKeyType(String key);
+
+    ConfKeyType getKeyType(CONFKEYS key);
+
+    bool saveAuto(String key, String v);
+    bool saveAuto(CONFKEYS key, String v);
+
+    void clear();
+    
+   private:  
+    /// mutex for R/W actions
+    std::mutex config_mtx;
+    ///preferences main key
+    char* _app_name;
+    ///ESP32 preferences abstraction
+    Preferences preferences;
+
+    void DEBUG(const char* text, const char* textb = "");
+
+    // @todo use DEBUG_ESP_PORT ?
+#ifdef WM_DEBUG_PORT
+    Stream& _debugPort = WM_DEBUG_PORT;
+#else
+    Stream& _debugPort = Serial;  // debug output stream ref
+#endif
+};
+
+#if !defined(NO_GLOBAL_INSTANCES) && !defined(NO_GLOBAL_CFGHANDLER)
+extern EasyPreferences cfg;
+#endif
+
+#endif
