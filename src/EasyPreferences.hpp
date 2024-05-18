@@ -17,7 +17,7 @@
 #define RO_MODE true
 
 typedef enum {
-    INT, BOOL, FLOAT, STRING, UNKNOWN
+    INT, UINT, BOOL, FLOAT, STRING, UNKNOWN
 } ConfKeyType;
 
 #include <preferences-keys.h>
@@ -53,6 +53,12 @@ class EasyPreferences {
 
     int32_t getInt(String key, int32_t defaultValue);
     int32_t getInt(CONFKEYS key, int32_t defaultValue);
+
+    void saveUInt(String key, uint32_t value);
+    void saveUInt(CONFKEYS key, uint32_t value);
+
+    uint32_t getUInt(String key, uint32_t defaultValue);
+    uint32_t getUInt(CONFKEYS key, uint32_t defaultValue);
     
     bool getBool(String key, bool defaultValue);
     bool getBool(CONFKEYS key, bool defaultValue);
@@ -105,7 +111,7 @@ class EasyPreferences {
     ///ESP32 preferences abstraction
     Preferences preferences;
 
-    void DEBUG(const char* text, const char* textb = "");
+    // void DEBUG(const char* text, const char* textb = "");
 
     // @todo use DEBUG_ESP_PORT ?
 #ifdef WM_DEBUG_PORT

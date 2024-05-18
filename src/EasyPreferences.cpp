@@ -74,6 +74,29 @@ int32_t EasyPreferences::getInt(CONFKEYS key, int32_t defaultValue){
     return getInt(getKey(key),defaultValue);
 }
 
+void EasyPreferences::saveUInt(String key, uint32_t value){
+    std::lock_guard<std::mutex> lck(config_mtx);
+    preferences.begin(_app_name, RW_MODE);
+    preferences.putUInt(key.c_str(), value);
+    preferences.end();
+}
+
+void EasyPreferences::saveUInt(CONFKEYS key, uint32_t value){
+    saveUInt(getKey(key),value);
+}
+
+uint32_t EasyPreferences::getUInt(String key, uint32_t defaultValue){
+    std::lock_guard<std::mutex> lck(config_mtx);
+    preferences.begin(_app_name, RO_MODE);
+    uint32_t out = preferences.getUInt(key.c_str(), defaultValue);
+    preferences.end();
+    return out;
+}
+
+uint32_t EasyPreferences::getUInt(CONFKEYS key, uint32_t defaultValue){ 
+    return getUInt(getKey(key),defaultValue);
+}
+
 void EasyPreferences::saveBool(String key, bool value){
     std::lock_guard<std::mutex> lck(config_mtx);
     preferences.begin(_app_name, RW_MODE);
@@ -237,16 +260,16 @@ void EasyPreferences::clear() {
     log_i("clear settings cleared!");
 }
 
-void EasyPreferences::DEBUG(const char *text, const char *textb) {
-    if (devmode) {
-        _debugPort.print(text);
-        if (textb) {
-            _debugPort.print(" ");
-            _debugPort.print(textb);
-        }
-        _debugPort.println();
-    }
-}
+// void EasyPreferences::DEBUG(const char *text, const char *textb) {
+//     if (devmode) {
+//         _debugPort.print(text);
+//         if (textb) {
+//             _debugPort.print(" ");
+//             _debugPort.print(textb);
+//         }
+//         _debugPort.println();
+//     }
+// }
 
 #if !defined(NO_GLOBAL_INSTANCES) && !defined(NO_GLOBAL_CFGHANDLER)
 EasyPreferences cfg;
