@@ -17,7 +17,7 @@
 #define RO_MODE true
 
 typedef enum {
-    INT, BOOL, FLOAT, STRING, UNKNOWN
+    INT, UINT, SHORT, BOOL, FLOAT, STRING, UNKNOWN
 } ConfKeyType;
 
 #include <preferences-keys.h>
@@ -36,7 +36,7 @@ your lib directory with your keys with something like that:
 *********************************/
 
 #define X(kname, kreal, ktype) kname,
-typedef enum CONFKEYS : size_t { CONFIG_KEYS_LIST } CONFKEYS; 
+typedef enum PKEYS : size_t { CONFIG_KEYS_LIST } CONFKEYS; 
 #undef X
 
 class EasyPreferences {
@@ -53,6 +53,18 @@ class EasyPreferences {
 
     int32_t getInt(String key, int32_t defaultValue);
     int32_t getInt(CONFKEYS key, int32_t defaultValue);
+
+    void saveUInt(String key, uint32_t value);
+    void saveUInt(CONFKEYS key, uint32_t value);
+
+    uint32_t getUInt(String key, uint32_t defaultValue);
+    uint32_t getUInt(CONFKEYS key, uint32_t defaultValue);
+
+    void saveShort(String key, int16_t value);
+    void saveShort(CONFKEYS key, int16_t value);
+
+    int16_t getShort(String key, int16_t defaultValue);
+    int16_t getShort(CONFKEYS key, int16_t defaultValue);
     
     bool getBool(String key, bool defaultValue);
     bool getBool(CONFKEYS key, bool defaultValue);
@@ -105,7 +117,7 @@ class EasyPreferences {
     ///ESP32 preferences abstraction
     Preferences preferences;
 
-    void DEBUG(const char* text, const char* textb = "");
+    // void DEBUG(const char* text, const char* textb = "");
 
     // @todo use DEBUG_ESP_PORT ?
 #ifdef WM_DEBUG_PORT
