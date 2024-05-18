@@ -6,7 +6,7 @@ ESP32 Preferences abstraction and manager with some key-value improvements and a
 
 ### Configuration
 
-Define in your project in the libraries directory, a new local library, and it  should be contain a header `preferences-key.h`, that contains your custom preferences keys and its description and type, like this:
+Define in your project in the libraries directory, a new local library, and it  should be contain a header `preferences-key.h`, that contains your custom preferences keys and its key value and key type, like this:
 
 ```cpp
 #define CONFIG_KEYS_LIST                 \
@@ -20,7 +20,7 @@ Define in your project in the libraries directory, a new local library, and it  
   X(KCOUNT, "KCOUNT", UNKNOWN)
 ```
 
-Possible directory structure for your preferences header:
+A possible directory structure for your preferences header could be:
 
 ```bash
 └── your_project

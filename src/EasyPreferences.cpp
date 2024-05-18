@@ -255,6 +255,8 @@ String EasyPreferences::getValue(String key) {
   if (type == ConfKeyType::BOOL) return cfg.getBool(key, false) ? "true" : "false";
   if (type == ConfKeyType::FLOAT) return String(cfg.getFloat(key, false),8);
   if (type == ConfKeyType::INT) return String(cfg.getInt(key, false));
+  if (type == ConfKeyType::UINT) return String(cfg.getUInt(key, false));
+  if (type == ConfKeyType::SHORT) return String(cfg.getShort(key, false));
   if (type == ConfKeyType::STRING) return cfg.getString(key, "");
   return "";
 }
