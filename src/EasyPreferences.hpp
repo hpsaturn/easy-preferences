@@ -17,7 +17,7 @@
 #define RO_MODE true
 
 typedef enum {
-    INT, UINT, BOOL, FLOAT, STRING, UNKNOWN
+    INT, UINT, SHORT, BOOL, FLOAT, STRING, UNKNOWN
 } ConfKeyType;
 
 #include <preferences-keys.h>
@@ -36,7 +36,7 @@ your lib directory with your keys with something like that:
 *********************************/
 
 #define X(kname, kreal, ktype) kname,
-typedef enum CONFKEYS : size_t { CONFIG_KEYS_LIST } CONFKEYS; 
+typedef enum PKEYS : size_t { CONFIG_KEYS_LIST } CONFKEYS; 
 #undef X
 
 class EasyPreferences {
@@ -59,6 +59,12 @@ class EasyPreferences {
 
     uint32_t getUInt(String key, uint32_t defaultValue);
     uint32_t getUInt(CONFKEYS key, uint32_t defaultValue);
+
+    void saveShort(String key, int16_t value);
+    void saveShort(CONFKEYS key, int16_t value);
+
+    int16_t getShort(String key, int16_t defaultValue);
+    int16_t getShort(CONFKEYS key, int16_t defaultValue);
     
     bool getBool(String key, bool defaultValue);
     bool getBool(CONFKEYS key, bool defaultValue);

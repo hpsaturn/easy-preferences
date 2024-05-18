@@ -97,6 +97,29 @@ uint32_t EasyPreferences::getUInt(CONFKEYS key, uint32_t defaultValue){
     return getUInt(getKey(key),defaultValue);
 }
 
+void EasyPreferences::saveShort(String key, int16_t value){
+    std::lock_guard<std::mutex> lck(config_mtx);
+    preferences.begin(_app_name, RW_MODE);
+    preferences.putShort(key.c_str(), value);
+    preferences.end();
+}
+
+void EasyPreferences::saveShort(CONFKEYS key, int16_t value){
+    saveShort(getKey(key),value);
+}
+
+int16_t EasyPreferences::getShort(String key, int16_t defaultValue){
+    std::lock_guard<std::mutex> lck(config_mtx);
+    preferences.begin(_app_name, RO_MODE);
+    int16_t out = preferences.getShort(key.c_str(), defaultValue);
+    preferences.end();
+    return out;
+}
+
+int16_t EasyPreferences::getShort(CONFKEYS key, int16_t defaultValue){ 
+    return getShort(getKey(key),defaultValue);
+}
+
 void EasyPreferences::saveBool(String key, bool value){
     std::lock_guard<std::mutex> lck(config_mtx);
     preferences.begin(_app_name, RW_MODE);
