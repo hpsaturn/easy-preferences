@@ -13,7 +13,7 @@ void showPreferences() {
   Serial.printf("\n%11s \t%s \t%s \r\n", "=======", "=======", "=====");
 
   for (int i = 0; i < KCOUNT; i++) {
-    String key = cfg.getKey((CONFKEYS)i);
+    String key = cfg.getKey((PKEYS)i);
     bool isDefined = cfg.isKey(key);
     String defined = isDefined ? "custom " : "default";
     String value = "";
@@ -52,79 +52,79 @@ void setup() {
   start_test();
   Serial.println("\r\n== Float Key tests:");
 
-  float pi = cfg.getFloat(CONFKEYS::KPINUM, 3.1415);
+  float pi = cfg.getFloat(PKEYS::KPINUM, 3.1415);
   Serial.printf("Pi default: %.6f\r\n", pi);
   
-  cfg.saveAuto(CONFKEYS::KPINUM, "3.1415926");
-  pi = cfg.getFloat(CONFKEYS::KPINUM, 3.1415);
+  cfg.saveAuto(PKEYS::KPINUM, "3.1415926");
+  pi = cfg.getFloat(PKEYS::KPINUM, 3.1415);
   Serial.printf("Pi saveAuto(3.1415926): %.6f\r\n", pi);
 
-  cfg.saveFloat(CONFKEYS::KPINUM, 3.1415926);
-  pi = cfg.getFloat(CONFKEYS::KPINUM, 3.1415);
+  cfg.saveFloat(PKEYS::KPINUM, 3.1415926);
+  pi = cfg.getFloat(PKEYS::KPINUM, 3.1415);
   Serial.printf("Pi saveFloat(3.1415926): %.8f\r\n", pi);
 
   Serial.println("\r\n== Integer Key tests:");
 
-  uint32_t mint = cfg.getInt(CONFKEYS::KMYINT, 123456);
+  uint32_t mint = cfg.getInt(PKEYS::KMYINT, 123456);
   Serial.printf("MyInteger default: %i\r\n", mint);
 
-  cfg.saveInt(CONFKEYS::KMYINT, 98765);
-  mint = cfg.getInt(CONFKEYS::KMYINT, 123456);
+  cfg.saveInt(PKEYS::KMYINT, 98765);
+  mint = cfg.getInt(PKEYS::KMYINT, 123456);
   Serial.printf("saveInt(98765): %i\r\n", mint);
 
-  cfg.saveInt(CONFKEYS::KMYINT, -123456789);
-  mint = cfg.getInt(CONFKEYS::KMYINT, 123456);
+  cfg.saveInt(PKEYS::KMYINT, -123456789);
+  mint = cfg.getInt(PKEYS::KMYINT, 123456);
   Serial.printf("saveInt(-123456789): %i\r\n", mint);
 
-  cfg.saveInt(CONFKEYS::KMYINT, 2147483647);
-  mint = cfg.getInt(CONFKEYS::KMYINT, 123456);
+  cfg.saveInt(PKEYS::KMYINT, 2147483647);
+  mint = cfg.getInt(PKEYS::KMYINT, 123456);
   Serial.printf("saveInt(2147483647): %i\r\n", mint);
 
-  cfg.saveAuto(CONFKEYS::KMYINT, "2147483647");
-  mint = cfg.getInt(CONFKEYS::KMYINT, 123456);
+  cfg.saveAuto(PKEYS::KMYINT, "2147483647");
+  mint = cfg.getInt(PKEYS::KMYINT, 123456);
   Serial.printf("saveAuto(2147483647): %i\r\n", mint);
 
   Serial.println("\r\n== String Key tests:");
 
-  String ms = cfg.getString(CONFKEYS::KMYSTR, "ABCD");
+  String ms = cfg.getString(PKEYS::KMYSTR, "ABCD");
   Serial.printf("MyString default: %s\r\n", ms);
 
-  cfg.saveString(CONFKEYS::KMYSTR, "abcdeABCDE1234_-@()\\s");
-  ms = cfg.getString(CONFKEYS::KMYSTR, "ABCD");
+  cfg.saveString(PKEYS::KMYSTR, "abcdeABCDE1234_-@()\\s");
+  ms = cfg.getString(PKEYS::KMYSTR, "ABCD");
   Serial.printf("saveString(\"abcdeABCDE1234_-@()\\s\"): %s\r\n", ms.c_str());
 
-  cfg.saveAuto(CONFKEYS::KMYSTR, "abcdeABCDE1234_-@()***[]'");
-  ms = cfg.getString(CONFKEYS::KMYSTR, "ABCD");
+  cfg.saveAuto(PKEYS::KMYSTR, "abcdeABCDE1234_-@()***[]'");
+  ms = cfg.getString(PKEYS::KMYSTR, "ABCD");
   Serial.printf("saveAuto(\"abcdeABCDE1234_-@()***[]'\"): %s\r\n", ms.c_str());
 
   Serial.println("\r\n== Boolean Key tests:");
 
-  bool mb = cfg.getBool(CONFKEYS::KMBOOL, true);
+  bool mb = cfg.getBool(PKEYS::KMBOOL, true);
   Serial.printf("MyBoolean default: %i\r\n", mb);
 
-  cfg.saveBool(CONFKEYS::KMBOOL, false);
-  mb = cfg.getBool(CONFKEYS::KMBOOL, true);
+  cfg.saveBool(PKEYS::KMBOOL, false);
+  mb = cfg.getBool(PKEYS::KMBOOL, true);
   Serial.printf("saveBool(false): %i\r\n", mb);
 
-  cfg.saveAuto(CONFKEYS::KMBOOL, "false");
-  mb = cfg.getBool(CONFKEYS::KMBOOL, true);
+  cfg.saveAuto(PKEYS::KMBOOL, "false");
+  mb = cfg.getBool(PKEYS::KMBOOL, true);
   Serial.printf("saveAuto(\"false\"): %i\r\n", mb);
 
-  cfg.saveAuto(CONFKEYS::KMBOOL, "true");
-  mb = cfg.getBool(CONFKEYS::KMBOOL, true);
+  cfg.saveAuto(PKEYS::KMBOOL, "true");
+  mb = cfg.getBool(PKEYS::KMBOOL, true);
   Serial.printf("saveAuto(\"true\"): %i\r\n", mb);
 
-  cfg.saveAuto(CONFKEYS::KMBOOL, "0");
-  mb = cfg.getBool(CONFKEYS::KMBOOL, true);
+  cfg.saveAuto(PKEYS::KMBOOL, "0");
+  mb = cfg.getBool(PKEYS::KMBOOL, true);
   Serial.printf("saveAuto(\"0\"): %i\r\n", mb);
 
-  cfg.saveAuto(CONFKEYS::KMBOOL, "1");
-  mb = cfg.getBool(CONFKEYS::KMBOOL, true);
+  cfg.saveAuto(PKEYS::KMBOOL, "1");
+  mb = cfg.getBool(PKEYS::KMBOOL, true);
   Serial.printf("saveAuto(\"1\"): %i\r\n", mb);
 
   end_test();
 
-  // cfg.saveBool(CONFKEYS::KDEBUG, true);
+  // cfg.saveBool(PKEYS::KDEBUG, true);
 }
 
 void loop() {
