@@ -1,0 +1,53 @@
+{
+  "name": "EasyPreferences",
+  "version": "0.1.0",
+  "homepage":"https://github.com/hpsaturn/easy-preferences",
+  "keywords": 
+  [ 
+    "preferences",
+    "settings",
+    "Data Storage",
+    "easy",
+    "manager",
+    "config",
+    "key",
+    "esp32",
+    "spiffs",
+    "nvs",
+    "flash",
+    "partition",
+    "value"
+  ],
+  "description":"ESP32 Preferences abstraction and manager with enhanced key-value capabilities. It includes a basic keys manifest and auto setters to streamline implementation.", 
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/hpsaturn/easy-preferences"
+  },
+  "frameworks": ["espidf", "arduino"],
+  "platforms":
+  [
+    "espressif32"
+  ],
+  "export": {
+    "exclude":
+    [
+        ".github",
+        ".travis.yml",
+        ".gitignore",
+        "deploy.sh",
+        "releases",
+        "pictures",
+        "screenshots"
+    ]
+  },
+  "authors":
+  [
+    {
+      "name": "@hpsaturn",
+      "url": "https://hpsaturn.com",
+      "maintainer": true
+    }  
+  ],
+  "license": "GPL-3.0-only"
+}

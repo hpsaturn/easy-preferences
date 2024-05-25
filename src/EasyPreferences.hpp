@@ -13,6 +13,9 @@
 #include <Preferences.h>
 #include <mutex>
 
+#define CSL_VERSION "0.1.0"
+#define CSL_REVISION 010
+
 #define RW_MODE false
 #define RO_MODE true
 
