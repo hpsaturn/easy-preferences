@@ -1,6 +1,6 @@
 # Easy Preferences
 
-ESP32 Preferences abstraction and manager with some key-value improvements and a  basic keys manifest.
+ESP32 Preferences abstraction and manager with enhanced key-value capabilities. It includes a basic keys manifest and auto setters to streamline implementation.
 
 ## Usage
 
