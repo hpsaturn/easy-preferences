@@ -13,8 +13,8 @@
 #include <Preferences.h>
 #include <mutex>
 
-#define CSL_VERSION "0.1.0"
-#define CSL_REVISION 010
+#define EPV_VERSION "0.1.1"
+#define EPV_REVISION 011
 
 #define RW_MODE false
 #define RO_MODE true

@@ -1,5 +1,7 @@
 # Easy Preferences
 
+[![PlatformIO](https://github.com/hpsaturn/easy-preferences/workflows/PlatformIO/badge.svg)](https://github.com/hpsaturn/easy-preferences/actions/) [![All Platforms](https://github.com/hpsaturn/easy-preferences/workflows/Scheduled/badge.svg)](https://github.com/hpsaturn/easy-preferences/actions/) ![ViewCount](https://views.whatilearened.today/views/github/hpsaturn/easy-preferences.svg)  
+
 ESP32 Preferences abstraction and manager with enhanced key-value capabilities. It includes a basic keys manifest and auto setters to streamline implementation.
 
 ## Usage
