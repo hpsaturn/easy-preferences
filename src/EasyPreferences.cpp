@@ -120,6 +120,29 @@ int16_t EasyPreferences::getShort(CONFKEYS key, int16_t defaultValue){
     return getShort(getKey(key),defaultValue);
 }
 
+void EasyPreferences::saveDouble(String key, double_t value){
+    std::lock_guard<std::mutex> lck(config_mtx);
+    preferences.begin(_app_name, RW_MODE);
+    preferences.putDouble(key.c_str(), value);
+    preferences.end();
+}
+
+void EasyPreferences::saveDouble(CONFKEYS key, double_t value){
+    saveDouble(getKey(key),value);
+}
+
+double_t EasyPreferences::getDouble(String key, double_t defaultValue){
+    std::lock_guard<std::mutex> lck(config_mtx);
+    preferences.begin(_app_name, RO_MODE);
+    double_t out = preferences.getDouble(key.c_str(), defaultValue);
+    preferences.end();
+    return out;
+}
+
+double_t EasyPreferences::getDouble(CONFKEYS key, double_t defaultValue){ 
+    return getDouble(getKey(key),defaultValue);
+}
+
 void EasyPreferences::saveBool(String key, bool value){
     std::lock_guard<std::mutex> lck(config_mtx);
     preferences.begin(_app_name, RW_MODE);
@@ -211,6 +234,24 @@ void saveFloatAuto(String key, String v) {
   log_i("saved: %s:%.5f\r\n",key.c_str(),value);
 }
 
+void saveShortAuto(String key, String v) {
+  int16_t value = v.toInt();
+  cfg.saveShort(key, value);
+  log_i("saved: %s:%i\r\n",key.c_str(),value);
+}
+
+void saveDoubleAuto(String key, String v) {
+  double_t value = v.toDouble();
+  cfg.saveDouble(key, value);
+  log_i("saved: %s:%f\r\n",key.c_str(),value);
+}
+
+void saveUIntAuto(String key, String v) {
+  uint32_t value = v.toInt();
+  cfg.saveUInt(key, value);
+  log_i("saved: %s:%u\r\n",key.c_str(),value);
+}
+
 bool EasyPreferences::saveAuto(CONFKEYS key, String v) {
   return saveAuto(getKey(key),v);
 }
@@ -220,6 +261,9 @@ bool EasyPreferences::saveAuto(String key, String v) {
     if(cfg.getKeyType(key) == ConfKeyType::BOOL) saveBoolAuto(key,v);
     else if(cfg.getKeyType(key) == ConfKeyType::FLOAT) saveFloatAuto(key,v);
     else if(cfg.getKeyType(key) == ConfKeyType::INT) saveIntegerAuto(key,v);
+    else if(cfg.getKeyType(key) == ConfKeyType::SHORT) saveShortAuto(key,v);
+    else if(cfg.getKeyType(key) == ConfKeyType::DOUBLE) saveDoubleAuto(key,v);
+    else if(cfg.getKeyType(key) == ConfKeyType::UINT) saveUIntAuto(key,v);
     else if(cfg.getKeyType(key) == ConfKeyType::STRING) cfg.saveString(key,v);
     else {
       log_e("Invalid key action for: %s",key.c_str());
@@ -253,10 +297,11 @@ ConfKeyType EasyPreferences::getKeyType(String key) {
 String EasyPreferences::getValue(String key) {
   ConfKeyType type = cfg.getKeyType(key);
   if (type == ConfKeyType::BOOL) return cfg.getBool(key, false) ? "true" : "false";
-  if (type == ConfKeyType::FLOAT) return String(cfg.getFloat(key, false),8);
+  if (type == ConfKeyType::FLOAT) return String(cfg.getFloat(key, false), 8);
   if (type == ConfKeyType::INT) return String(cfg.getInt(key, false));
   if (type == ConfKeyType::UINT) return String(cfg.getUInt(key, false));
   if (type == ConfKeyType::SHORT) return String(cfg.getShort(key, false));
+  if (type == ConfKeyType::DOUBLE) return String(cfg.getDouble(key, false), 8);
   if (type == ConfKeyType::STRING) return cfg.getString(key, "");
   return "";
 }

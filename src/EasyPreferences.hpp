@@ -20,7 +20,7 @@
 #define RO_MODE true
 
 typedef enum {
-    INT, UINT, SHORT, BOOL, FLOAT, STRING, UNKNOWN
+    INT, UINT, SHORT, DOUBLE, BOOL, FLOAT, STRING, UNKNOWN
 } ConfKeyType;
 
 #include <preferences-keys.h>
@@ -69,6 +69,12 @@ class EasyPreferences {
     int16_t getShort(String key, int16_t defaultValue);
     int16_t getShort(CONFKEYS key, int16_t defaultValue);
     
+    void saveDouble(String key, double_t value);
+    void saveDouble(CONFKEYS key, double_t value);
+
+    double_t getDouble(String key, double_t defaultValue);
+    double_t getDouble(CONFKEYS key, double_t defaultValue);
+
     bool getBool(String key, bool defaultValue);
     bool getBool(CONFKEYS key, bool defaultValue);
 
