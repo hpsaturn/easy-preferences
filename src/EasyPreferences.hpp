@@ -13,8 +13,8 @@
 #include <Preferences.h>
 #include <mutex>
 
-#define EPV_VERSION "0.1.1"
-#define EPV_REVISION 011
+#define EPV_VERSION "0.1.2"
+#define EPV_REVISION 012
 
 #define RW_MODE false
 #define RO_MODE true
