@@ -20,7 +20,7 @@
 #define RO_MODE true
 
 typedef enum {
-    INT, UINT, SHORT, DOUBLE, BOOL, FLOAT, STRING, UNKNOWN
+    INT, U_INT, SHORT, DOUBLE, BOOL, FLOAT, STRING, UNKNOWN
 } ConfKeyType;
 
 #include <preferences-keys.h>

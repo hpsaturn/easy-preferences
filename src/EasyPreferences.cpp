@@ -263,7 +263,7 @@ bool EasyPreferences::saveAuto(String key, String v) {
     else if(cfg.getKeyType(key) == ConfKeyType::INT) saveIntegerAuto(key,v);
     else if(cfg.getKeyType(key) == ConfKeyType::SHORT) saveShortAuto(key,v);
     else if(cfg.getKeyType(key) == ConfKeyType::DOUBLE) saveDoubleAuto(key,v);
-    else if(cfg.getKeyType(key) == ConfKeyType::UINT) saveUIntAuto(key,v);
+    else if(cfg.getKeyType(key) == ConfKeyType::U_INT) saveUIntAuto(key,v);
     else if(cfg.getKeyType(key) == ConfKeyType::STRING) cfg.saveString(key,v);
     else {
       log_e("Invalid key action for: %s",key.c_str());
@@ -299,7 +299,7 @@ String EasyPreferences::getValue(String key) {
   if (type == ConfKeyType::BOOL) return cfg.getBool(key, false) ? "true" : "false";
   if (type == ConfKeyType::FLOAT) return String(cfg.getFloat(key, false), 8);
   if (type == ConfKeyType::INT) return String(cfg.getInt(key, false));
-  if (type == ConfKeyType::UINT) return String(cfg.getUInt(key, false));
+  if (type == ConfKeyType::U_INT) return String(cfg.getUInt(key, false));
   if (type == ConfKeyType::SHORT) return String(cfg.getShort(key, false));
   if (type == ConfKeyType::DOUBLE) return String(cfg.getDouble(key, false), 8);
   if (type == ConfKeyType::STRING) return cfg.getString(key, "");
