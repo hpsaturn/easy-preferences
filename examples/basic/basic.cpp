@@ -1,8 +1,6 @@
 /**************************************************
- * ESP32Cam Freenove Tank Transmitter and Receiver
+ * Basic sample and tests of EasyPreferences library
  * by @hpsaturn Copyright (C) 2024
- * This file is part ESPNowCam project:
- * https://github.com/hpsaturn/ESPNowCam
 **************************************************/
 
 #include <Arduino.h>
@@ -123,8 +121,6 @@ void setup() {
   Serial.printf("saveAuto(\"1\"): %i\r\n", mb);
 
   end_test();
-
-  // cfg.saveBool(PKEYS::KDEBUG, true);
 }
 
 void loop() {
