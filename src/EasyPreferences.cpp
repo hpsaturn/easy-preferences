@@ -261,9 +261,9 @@ bool EasyPreferences::saveAuto(String key, String v) {
     if(cfg.getKeyType(key) == ConfKeyType::BOOL) saveBoolAuto(key,v);
     else if(cfg.getKeyType(key) == ConfKeyType::FLOAT) saveFloatAuto(key,v);
     else if(cfg.getKeyType(key) == ConfKeyType::INT) saveIntegerAuto(key,v);
+    else if(cfg.getKeyType(key) == ConfKeyType::UINT) saveUIntAuto(key,v);
     else if(cfg.getKeyType(key) == ConfKeyType::SHORT) saveShortAuto(key,v);
     else if(cfg.getKeyType(key) == ConfKeyType::DOUBLE) saveDoubleAuto(key,v);
-    else if(cfg.getKeyType(key) == ConfKeyType::UINT) saveUIntAuto(key,v);
     else if(cfg.getKeyType(key) == ConfKeyType::STRING) cfg.saveString(key,v);
     else {
       log_e("Invalid key action for: %s",key.c_str());
