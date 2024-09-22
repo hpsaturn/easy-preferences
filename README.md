@@ -15,10 +15,10 @@ Define in your project in the libraries directory, a new local library, and it  
   X(KMAP_SPEED, "Map_speed", BOOL)       \
   X(KMAP_SCALE, "Map_scale", BOOL)       \
   X(KMAP_COMPASS, "Map_compass", BOOL)   \
-  X(KCOMP_X, "Compass_X", INT) \
-  X(KCOMP_Y, "Compass_Y", INT) \
-  X(KSPEED_X, "Speed_X", INT) \
-  X(KSPEED_Y, "Speed_Y", INT) \
+  X(KCOMP_X, "Compass_X", INT)           \
+  X(KCOMP_Y, "Compass_Y", INT)           \
+  X(KSPEED_X, "Speed_X", INT)            \
+  X(KSPEED_Y, "Speed_Y", INT)            \
   X(KCOUNT, "KCOUNT", UNKNOWN)
 ```
 
@@ -102,9 +102,9 @@ And you should have an ouput similar to:
 >[!TIP]
 >For more details please review the [basic example](https://github.com/hpsaturn/easy-preferences/tree/master/examples/basic), and also these developments that implements EasyPreferences library:
 
-[ IceNav v3 - ESP32 Based GPS Navigator](https://github.com/jgauchia/IceNav-v3)  
+[IceNav v3 - ESP32 Based GPS Navigator](https://github.com/jgauchia/IceNav-v3)  
 [ESPNowCam - Freenove S3 camera Tank](https://github.com/hpsaturn/ESPNowCam/tree/master/examples/freenove-tank)
 
 ## Credits
 
-Thanks to @jgauchia to use and test this library in his project.
+Thanks to [@jgauchia](https://github.com/jgauchia) to use and test this library in his project.
