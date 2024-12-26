@@ -307,12 +307,10 @@ String EasyPreferences::getValue(String key) {
 }
 
 String EasyPreferences::getDeviceId() {
-    uint8_t baseMac[6];
-    // Get MAC address for WiFi station
-    esp_read_mac(baseMac, ESP_MAC_WIFI_STA);
-    char baseMacChr[19] = {0};
-    sprintf(baseMacChr, "%02X:%02X:%02X:%02X:%02X:%02X", baseMac[0], baseMac[1], baseMac[2], baseMac[3], baseMac[4], baseMac[5]+2);
-    return String(baseMacChr);
+    uint64_t chipid = ESP.getEfuseMac();
+    char chipIdChr[13];
+    sprintf(chipIdChr, "%04X%08X", (uint16_t)(chipid>>32), (uint32_t)chipid);
+    return String(chipIdChr);
 }
 
 String EasyPreferences::getDeviceIdShort() {
