@@ -46,6 +46,8 @@ void setup() {
   Serial.println();
 
   cfg.init("MyApp");
+  Serial.printf("deviceId \t: %s\r\n", cfg.getDeviceId().c_str());
+  Serial.printf("deviceIdShort\t: %s\r\n", cfg.getDeviceIdShort().c_str());
 
   start_test();
   Serial.println("\r\n== Float Key tests:");
