@@ -104,8 +104,8 @@ And you should have an ouput similar to:
 
 [IceNav v3 - ESP32 Based GPS Navigator](https://github.com/jgauchia/IceNav-v3)  
 [ESPNowCam - Freenove S3 camera Tank](https://github.com/hpsaturn/ESPNowCam/tree/master/examples/freenove-tank)
-[CanAirIO - Air quality device](https://github.com/kike-canaries/canairio_firmware?tab=readme-ov-file#readme)
-[ESP32 Camera CLI - Camera Manager](https://github.com/hpsaturn/esp32-camera-cli?tab=readme-ov-file#readme)
+[CanAirIO - Air quality device](https://github.com/kike-canaries/canairio_firmware?tab=readme-ov-file#readme)  
+[ESP32 Camera CLI - Camera Manager](https://github.com/hpsaturn/esp32-camera-cli?tab=readme-ov-file#readme)  
 
 ## Credits
 
