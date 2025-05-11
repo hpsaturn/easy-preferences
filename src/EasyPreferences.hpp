@@ -11,10 +11,11 @@
 #define EasyPreferences_hpp
 
 #include <Preferences.h>
+#include "esp_mac.h"
 #include <mutex>
 
-#define EPV_VERSION "0.1.3"
-#define EPV_REVISION 013
+#define EPV_VERSION "0.1.4"
+#define EPV_REVISION 014
 
 #define RW_MODE false
 #define RO_MODE true
