@@ -34,3 +34,7 @@ jobs:
       - name: PlatformIO Build Test
         run: |
           pio run
+      - name: PlatformIO Integration Test
+        run: |
+          cd examples/basic
+          pio run
